@@ -9,7 +9,7 @@ public class BoostPowerup : MonoBehaviour
         Rigidbody rb = other.GetComponent<Rigidbody>();
         if (rb != null)
         {
-            rb.AddForce(rb.velocity.normalized * 1000f);
+            rb.AddForce(rb.linearVelocity.normalized * 1000f);
         }
     }
 }
