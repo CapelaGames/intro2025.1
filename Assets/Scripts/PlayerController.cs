@@ -12,11 +12,13 @@ public class PlayerController : MonoBehaviour
 
     private bool grounded = false;
     private int score = 0;
+    private int points = 0;
     private int totalCollectables;
     private float timer = 0;
 
-    public TMP_Text scoreText;
+    public TMP_Text countText;
     public TMP_Text timerText;
+    public TMP_Text totalText;
 
     public float speed = 500f;
     public float walkSpeed = 500f;
@@ -26,7 +28,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         totalCollectables = GameObject.FindGameObjectsWithTag("Collectable").Length;
-        scoreText.text = "0 / " + totalCollectables;
+        countText.text = "0 / " + totalCollectables;
 
         rb = GetComponent<Rigidbody>();
         playerCamera = Camera.main;
@@ -105,8 +107,18 @@ public class PlayerController : MonoBehaviour
         if (other.tag == "Collectable")
         {
             score++;
-            scoreText.text = score + " / " + totalCollectables;
-            Destroy(other.gameObject);
+
+            Collectable collectable = other.GetComponent<Collectable>();
+           
+            if(collectable != null)
+            {
+                int newPoints = collectable.Collect(score, totalCollectables);
+            }
+            else
+            {
+                Debug.LogError("No Collectable script on collected gameobject");
+            }
+
         }
     }
 }
