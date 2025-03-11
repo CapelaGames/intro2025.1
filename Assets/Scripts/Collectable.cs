@@ -1,8 +1,10 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Collectable : MonoBehaviour
 {
-    public int points;
+    public int points = 1;
+    public bool isGrowPowerup = false;
 
     PlayerController player;
 
@@ -11,18 +13,24 @@ public class Collectable : MonoBehaviour
         player = FindFirstObjectByType<PlayerController>();
     }
 
-    void Update()
+    public int Collect(int score, int totalCollectables, int totalPoints)
     {
-        
-    }
+        int newTotal = points + totalPoints;
 
-    public int Collect(int score, int totalCollectables)
-    {
         player.countText.text = score + " / " + totalCollectables;
-        player.totalText
+        player.totalText.text = "Points: " + newTotal;
 
+        GrowPlayer();
         Destroy(gameObject);
 
-        return points;
+        return newTotal; // One one thing can be returned
+    }
+
+    void GrowPlayer()
+    {
+        if(isGrowPowerup == true)
+        {
+            player.Grow();
+        }
     }
 }

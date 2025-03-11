@@ -16,6 +16,10 @@ public class PlayerController : MonoBehaviour
     private int totalCollectables;
     private float timer = 0;
 
+    private bool isGrown = false;
+    private float growTimer = 0;
+    private float growTotalTime = 5f;
+
     public TMP_Text countText;
     public TMP_Text timerText;
     public TMP_Text totalText;
@@ -36,6 +40,16 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        SceneReload();
+        UpdateTimer();
+        Sprint();
+        Jump();
+        GrowCountDown();
+    }
+    #region Update Function
+    //#endregion
+    void SceneReload()
+    {
         //INCLUDE THIS AT TOP using UnityEngine.SceneManagement;
         if (Input.GetKeyDown(KeyCode.R))
         {
@@ -46,7 +60,10 @@ public class PlayerController : MonoBehaviour
         {
             SceneManager.LoadScene(0);
         }
+    }
 
+    void UpdateTimer()
+    {
         if (score < totalCollectables)
         {
             timer += Time.deltaTime;
@@ -55,7 +72,9 @@ public class PlayerController : MonoBehaviour
         //Mathf.Floor
         //Mathf.Ceil
         timerText.text = "Time: " + timer.ToString("F2");
-
+    }
+    void Sprint()
+    {
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
             speed = sprintSpeed;
@@ -65,7 +84,10 @@ public class PlayerController : MonoBehaviour
         {
             speed = walkSpeed;
         }
+    }
 
+    void Jump()
+    {
         input = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
         input.Normalize();
 
@@ -74,6 +96,8 @@ public class PlayerController : MonoBehaviour
             rb.AddForce(Vector3.up * jumpSpeed, ForceMode.Impulse);
         }
     }
+    #endregion
+
 
     void FixedUpdate()
     {
@@ -106,13 +130,15 @@ public class PlayerController : MonoBehaviour
     {
         if (other.tag == "Collectable")
         {
+            //score -> total 
+            //points -> how many points we have earned
             score++;
 
             Collectable collectable = other.GetComponent<Collectable>();
            
             if(collectable != null)
             {
-                int newPoints = collectable.Collect(score, totalCollectables);
+                points = collectable.Collect(score, totalCollectables, points);
             }
             else
             {
@@ -120,5 +146,31 @@ public class PlayerController : MonoBehaviour
             }
 
         }
+    }
+
+    public void Grow()
+    {
+        if (growTimer <= 0)
+        {
+            transform.localScale *= 2; //grow player
+            isGrown = true;
+        }
+        growTimer = growTotalTime;
+    }
+
+    private void GrowCountDown()
+    {
+        growTimer -= Time.deltaTime;
+
+        if(growTimer <= 0 && isGrown == true)
+        {
+            Shrink();
+        }
+    }
+
+    private void Shrink()
+    {
+        transform.localScale *= 0.5f;
+        isGrown = false;
     }
 }
