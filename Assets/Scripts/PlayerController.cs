@@ -138,7 +138,7 @@ public class PlayerController : MonoBehaviour
            
             if(collectable != null)
             {
-                points = collectable.Collect(score, totalCollectables, points);
+                points = collectable.Collect(score, totalCollectables, points, timer);
             }
             else
             {

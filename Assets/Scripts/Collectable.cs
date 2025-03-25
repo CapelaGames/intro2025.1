@@ -1,5 +1,6 @@
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Collectable : MonoBehaviour
 {
@@ -13,7 +14,7 @@ public class Collectable : MonoBehaviour
         player = FindFirstObjectByType<PlayerController>();
     }
 
-    public int Collect(int score, int totalCollectables, int totalPoints)
+    public int Collect(int score, int totalCollectables, int totalPoints, float totalTime)
     {
         int newTotal = points + totalPoints;
 
@@ -22,6 +23,17 @@ public class Collectable : MonoBehaviour
 
         GrowPlayer();
         Destroy(gameObject);
+
+        if(score == totalCollectables)
+        {
+            float newScore = newTotal - totalTime;
+            float highScore = PlayerPrefs.GetFloat("HighScore");
+            if(newScore > highScore)
+            {
+                PlayerPrefs.SetFloat("HighScore", newScore);
+            }
+            SceneManager.LoadScene("GameOver");
+        }
 
         return newTotal; // One one thing can be returned
     }

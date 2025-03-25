@@ -44,3 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2d2396ccd0a488a487a1a4daeae6cdf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enableOnPause:
+  - {fileID: 0}
+  disableOnResume:
+  - {fileID: 0}
+  - {fileID: 0}

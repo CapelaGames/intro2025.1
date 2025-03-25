@@ -11,5 +11,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Marble.unity
     guid: 24a039cdac7fa5f4889d99c324acdf76
+  - enabled: 1
+    path: Assets/Scenes/GameOver.unity
+    guid: 71354d20e5ba2e8459abb613a8aa5866
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0

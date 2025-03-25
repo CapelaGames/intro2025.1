@@ -11,12 +11,6 @@ public class CameraController : MonoBehaviour
     private float xRotation = 0f;
     private float yRotation = 0f;
 
-    void Start()
-    {
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
-    }
-
     //Late update is like update, but for cameras
     void LateUpdate()
     {
