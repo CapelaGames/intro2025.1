@@ -49,3 +49,4 @@ MonoBehaviour:
   disableOnResume:
   - {fileID: 0}
   - {fileID: 0}
+  audioMixer: {fileID: 24100000, guid: b0031f045f6d1d53786897ba0f8d18dd, type: 2}

@@ -130,8 +130,14 @@ public class PlayerController : MonoBehaviour
     {
         if (other.tag == "Collectable")
         {
-            //score -> total 
-            //points -> how many points we have earned
+            // Play Sound
+            if (other.TryGetComponent<AudioSource>(out AudioSource audioSource))
+            {
+               audioSource.Play(); 
+            }
+
+            // score -> total 
+            // points -> how many points we have earned
             score++;
 
             Collectable collectable = other.GetComponent<Collectable>();

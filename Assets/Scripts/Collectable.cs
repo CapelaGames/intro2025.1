@@ -1,3 +1,4 @@
+using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -22,8 +23,11 @@ public class Collectable : MonoBehaviour
         player.totalText.text = "Points: " + newTotal;
 
         GrowPlayer();
-        Destroy(gameObject);
 
+        gameObject.GetComponent<MeshRenderer>().enabled = false;
+        gameObject.GetComponent<Collider>().enabled = false;
+        StartCoroutine(DestroyOnDelay(1));
+        //Destroy(gameObject);
         if(score == totalCollectables)
         {
             float newScore = newTotal - totalTime;
@@ -34,8 +38,13 @@ public class Collectable : MonoBehaviour
             }
             SceneManager.LoadScene("GameOver");
         }
-
         return newTotal; // One one thing can be returned
+    }
+
+    IEnumerator DestroyOnDelay(float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+        Destroy(gameObject);
     }
 
     void GrowPlayer()

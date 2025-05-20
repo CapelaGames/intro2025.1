@@ -165,10 +165,22 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6089056396070341598}
+        m_TargetAssemblyTypeName: Menu, Assembly-CSharp
+        m_MethodName: SetSFXVolume
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 1
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &885355381799353040
 GameObject:
   m_ObjectHideFlags: 0
@@ -2517,10 +2529,22 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6089056396070341598}
+        m_TargetAssemblyTypeName: Menu, Assembly-CSharp
+        m_MethodName: SetMusicVolume
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &6018304427866894789
 GameObject:
   m_ObjectHideFlags: 0
@@ -3290,9 +3314,21 @@ PrefabInstance:
     m_TransformParent: {fileID: 6031181115226390222}
     m_Modifications:
     - target: {fileID: 2777065705967310482, guid: 067bfcb07350726c8b26c0dbabd88f0e, type: 3}
+      propertyPath: sfxSlider
+      value: 
+      objectReference: {fileID: 6016596770251717330}
+    - target: {fileID: 2777065705967310482, guid: 067bfcb07350726c8b26c0dbabd88f0e, type: 3}
+      propertyPath: musicSlider
+      value: 
+      objectReference: {fileID: 5518590331510632401}
+    - target: {fileID: 2777065705967310482, guid: 067bfcb07350726c8b26c0dbabd88f0e, type: 3}
       propertyPath: enableOnPause
       value: 
       objectReference: {fileID: 4350253849863783147}
+    - target: {fileID: 2777065705967310482, guid: 067bfcb07350726c8b26c0dbabd88f0e, type: 3}
+      propertyPath: fullScreenToggle
+      value: 
+      objectReference: {fileID: 1632321430751788509}
     - target: {fileID: 2777065705967310482, guid: 067bfcb07350726c8b26c0dbabd88f0e, type: 3}
       propertyPath: 'enableOnPause.Array.data[0]'
       value: 
